@@ -1,0 +1,1380 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2019.4">
+  <Nodes>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="54">C:\Users\Adrian Perdon\Desktop\response.json</File>
+          <FormatSpecificOptions>
+            <SingleField>True</SingleField>
+            <CodePage>65001</CodePage>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>response.json</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="JSON_Name" size="1073741823" source="JSON_Input: " type="V_WString" />
+            <Field name="JSON_ValueString" size="1073741823" source="JSON_Input: " type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+        <Position x="138" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>JSON_Name</Field>
+          <RegExExpression value="issues.(\d+)" />
+          <CaseInsensitve value="True" />
+          <Method>ParseComplex</Method>
+          <Replace expression="">
+            <CopyUnmatched value="True" />
+          </Replace>
+          <ParseSimple>
+            <SplitToRows value="False" />
+            <RootName>JSON_Name</RootName>
+            <NumFields value="3" />
+            <ErrorHandling>Warn</ErrorHandling>
+          </ParseSimple>
+          <ParseComplex>
+            <Field field="Issue_Key" type="V_WString" size="1073741823" />
+          </ParseComplex>
+          <Match>
+            <Field>JSON_Name_Matched</Field>
+            <ErrorUnmatched value="False" />
+          </Match>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+        <Position x="234" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>JSON_Name</Field>
+          <RegExExpression value="issues.(\d+)." />
+          <CaseInsensitve value="True" />
+          <Method>Replace</Method>
+          <Replace expression="">
+            <CopyUnmatched value="True" />
+          </Replace>
+          <ParseSimple>
+            <SplitToRows value="False" />
+            <RootName>JSON_Name</RootName>
+            <NumFields value="3" />
+            <ErrorHandling>Warn</ErrorHandling>
+          </ParseSimple>
+          <ParseComplex>
+            <Field field="RegExOut1" type="V_WString" size="1073741823" />
+          </ParseComplex>
+          <Match>
+            <Field>JSON_Name_Matched</Field>
+            <ErrorUnmatched value="False" />
+          </Match>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="210" y="149" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>NotContains</Operator>
+            <Field>JSON_Name</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2020-05-21 18:14:37</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>Subtasks</Operand>
+              <StartDate>2020-05-21 18:14:37</StartDate>
+              <EndDate>2020-05-21 18:14:37</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Subtasks</AnnotationText>
+          <DefaultAnnotationText>!Contains([JSON_Name],"Subtasks")</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="330" y="137" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>NotContains</Operator>
+            <Field>JSON_Name</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2020-05-21 18:15:42</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>issuelinks</Operand>
+              <StartDate>2020-05-21 18:15:42</StartDate>
+              <EndDate>2020-05-21 18:15:42</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Issue Links</AnnotationText>
+          <DefaultAnnotationText>!Contains([JSON_Name],"issuelinks")</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="32">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="426" y="149" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>NotContains</Operator>
+            <Field>JSON_Name</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2020-05-21 18:39:20</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>fields.customfield_10704</Operand>
+              <StartDate>2020-05-21 18:39:20</StartDate>
+              <EndDate>2020-05-21 18:39:20</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Tribes Involved</AnnotationText>
+          <DefaultAnnotationText>!Contains([JSON_Name],"fields.customfield_10704")</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="52">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="606" y="65" width="384" height="144" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text />
+          <Font name="Arial" size="8.25" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+          <BG_Image>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</BG_Image>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="51">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="569" y="221" width="465" height="180" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Initiative Header</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="38">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+            <Position x="594" y="282" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <GroupFields>
+                <Field field="Issue_Key" />
+              </GroupFields>
+              <HeaderField field="JSON_Name" />
+              <DataField field="JSON_ValueString" />
+              <Methods>
+                <Method method="Concat" />
+                <Separator>,</Separator>
+                <FieldSize value="2048" />
+              </Methods>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field description="RegEx: Parsed from JSON_Name" name="Issue_Key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field name="expand" size="2048" source="CrossTab:Header:JSON_Name:expand:Concat:" type="V_WString" />
+                <Field name="fields_aggregateprogress_progress" size="2048" source="CrossTab:Header:JSON_Name:fields.aggregateprogress.progress:Concat:" type="V_WString" />
+                <Field name="fields_aggregateprogress_total" size="2048" source="CrossTab:Header:JSON_Name:fields.aggregateprogress.total:Concat:" type="V_WString" />
+                <Field name="fields_aggregatetimeestimate" size="2048" source="CrossTab:Header:JSON_Name:fields.aggregatetimeestimate:Concat:" type="V_WString" />
+                <Field name="fields_aggregatetimeoriginalestimate" size="2048" source="CrossTab:Header:JSON_Name:fields.aggregatetimeoriginalestimate:Concat:" type="V_WString" />
+                <Field name="fields_aggregatetimespent" size="2048" source="CrossTab:Header:JSON_Name:fields.aggregatetimespent:Concat:" type="V_WString" />
+                <Field name="fields_assignee" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee:Concat:" type="V_WString" />
+                <Field name="fields_assignee_active" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.active:Concat:" type="V_WString" />
+                <Field name="fields_assignee_avatarUrls_16x16" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.avatarUrls.16x16:Concat:" type="V_WString" />
+                <Field name="fields_assignee_avatarUrls_24x24" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.avatarUrls.24x24:Concat:" type="V_WString" />
+                <Field name="fields_assignee_avatarUrls_32x32" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.avatarUrls.32x32:Concat:" type="V_WString" />
+                <Field name="fields_assignee_avatarUrls_48x48" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.avatarUrls.48x48:Concat:" type="V_WString" />
+                <Field name="fields_assignee_displayName" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.displayName:Concat:" type="V_WString" />
+                <Field name="fields_assignee_emailAddress" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.emailAddress:Concat:" type="V_WString" />
+                <Field name="fields_assignee_key" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.key:Concat:" type="V_WString" />
+                <Field name="fields_assignee_name" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.name:Concat:" type="V_WString" />
+                <Field name="fields_assignee_self" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.self:Concat:" type="V_WString" />
+                <Field name="fields_assignee_timeZone" size="2048" source="CrossTab:Header:JSON_Name:fields.assignee.timeZone:Concat:" type="V_WString" />
+                <Field name="fields_components_0_id" size="2048" source="CrossTab:Header:JSON_Name:fields.components.0.id:Concat:" type="V_WString" />
+                <Field name="fields_components_0_name" size="2048" source="CrossTab:Header:JSON_Name:fields.components.0.name:Concat:" type="V_WString" />
+                <Field name="fields_components_0_self" size="2048" source="CrossTab:Header:JSON_Name:fields.components.0.self:Concat:" type="V_WString" />
+                <Field name="fields_components_1_id" size="2048" source="CrossTab:Header:JSON_Name:fields.components.1.id:Concat:" type="V_WString" />
+                <Field name="fields_components_1_name" size="2048" source="CrossTab:Header:JSON_Name:fields.components.1.name:Concat:" type="V_WString" />
+                <Field name="fields_components_1_self" size="2048" source="CrossTab:Header:JSON_Name:fields.components.1.self:Concat:" type="V_WString" />
+                <Field name="fields_created" size="2048" source="CrossTab:Header:JSON_Name:fields.created:Concat:" type="V_WString" />
+                <Field name="fields_creator_active" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.active:Concat:" type="V_WString" />
+                <Field name="fields_creator_avatarUrls_16x16" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.avatarUrls.16x16:Concat:" type="V_WString" />
+                <Field name="fields_creator_avatarUrls_24x24" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.avatarUrls.24x24:Concat:" type="V_WString" />
+                <Field name="fields_creator_avatarUrls_32x32" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.avatarUrls.32x32:Concat:" type="V_WString" />
+                <Field name="fields_creator_avatarUrls_48x48" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.avatarUrls.48x48:Concat:" type="V_WString" />
+                <Field name="fields_creator_displayName" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.displayName:Concat:" type="V_WString" />
+                <Field name="fields_creator_emailAddress" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.emailAddress:Concat:" type="V_WString" />
+                <Field name="fields_creator_key" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.key:Concat:" type="V_WString" />
+                <Field name="fields_creator_name" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.name:Concat:" type="V_WString" />
+                <Field name="fields_creator_self" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.self:Concat:" type="V_WString" />
+                <Field name="fields_creator_timeZone" size="2048" source="CrossTab:Header:JSON_Name:fields.creator.timeZone:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10000" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10000:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10100" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10100:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10101" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10101:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10102" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10102:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10106" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10106:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10200" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10200:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10300" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10300:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10304" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10304:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10305" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10305:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10400" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10400:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10400_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10400.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10400_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10400.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10400_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10400.value:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10401" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10401:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10402" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10402:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10403" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10403:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10403_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10403.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10403_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10403.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10403_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10403.value:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10404" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10404:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10404_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10404.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10404_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10404.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10404_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10404.value:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10410" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10410:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10415" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10415:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10500" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10500:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10600" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10600:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10701" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10701:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10702" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10702:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10702_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10702.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10702_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10702.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10702_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10702.value:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10705" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10705:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10705_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10705.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10705_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10705.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10705_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10705.value:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706_0_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706.0.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706_0_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706.0.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706_0_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706.0.value:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706_1_id" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706.1.id:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706_1_self" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706.1.self:Concat:" type="V_WString" />
+                <Field name="fields_customfield_10706_1_value" size="2048" source="CrossTab:Header:JSON_Name:fields.customfield_10706.1.value:Concat:" type="V_WString" />
+                <Field name="fields_description" size="2048" source="CrossTab:Header:JSON_Name:fields.description:Concat:" type="V_WString" />
+                <Field name="fields_duedate" size="2048" source="CrossTab:Header:JSON_Name:fields.duedate:Concat:" type="V_WString" />
+                <Field name="fields_environment" size="2048" source="CrossTab:Header:JSON_Name:fields.environment:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_archived" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.archived:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_description" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.description:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_id" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.id:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_name" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.name:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_released" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.released:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_releaseDate" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.releaseDate:Concat:" type="V_WString" />
+                <Field name="fields_fixVersions_0_self" size="2048" source="CrossTab:Header:JSON_Name:fields.fixVersions.0.self:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_avatarId" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.avatarId:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_description" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.description:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_id" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.id:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_name" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.name:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_self" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.self:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_subtask" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.subtask:Concat:" type="V_WString" />
+                <Field name="fields_lastViewed" size="2048" source="CrossTab:Header:JSON_Name:fields.lastViewed:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_avatarId" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.avatarId:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_description" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.description:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_id" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.id:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_name" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.name:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_self" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.self:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_issuetype_subtask" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.issuetype.subtask:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_priority_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.priority.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_priority_id" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.priority.id:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_priority_name" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.priority.name:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_priority_self" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.priority.self:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_description" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.description:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_id" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.id:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_name" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.name:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_self" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.self:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_statusCategory_colorName" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.statusCategory.colorName:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_statusCategory_id" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.statusCategory.id:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_statusCategory_key" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.statusCategory.key:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_statusCategory_name" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.statusCategory.name:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_status_statusCategory_self" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.status.statusCategory.self:Concat:" type="V_WString" />
+                <Field name="fields_parent_fields_summary" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.fields.summary:Concat:" type="V_WString" />
+                <Field name="fields_parent_id" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.id:Concat:" type="V_WString" />
+                <Field name="fields_parent_key" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.key:Concat:" type="V_WString" />
+                <Field name="fields_parent_self" size="2048" source="CrossTab:Header:JSON_Name:fields.parent.self:Concat:" type="V_WString" />
+                <Field name="fields_priority_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_priority_id" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.id:Concat:" type="V_WString" />
+                <Field name="fields_priority_name" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.name:Concat:" type="V_WString" />
+                <Field name="fields_priority_self" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.self:Concat:" type="V_WString" />
+                <Field name="fields_progress_progress" size="2048" source="CrossTab:Header:JSON_Name:fields.progress.progress:Concat:" type="V_WString" />
+                <Field name="fields_progress_total" size="2048" source="CrossTab:Header:JSON_Name:fields.progress.total:Concat:" type="V_WString" />
+                <Field name="fields_project_avatarUrls_16x16" size="2048" source="CrossTab:Header:JSON_Name:fields.project.avatarUrls.16x16:Concat:" type="V_WString" />
+                <Field name="fields_project_avatarUrls_24x24" size="2048" source="CrossTab:Header:JSON_Name:fields.project.avatarUrls.24x24:Concat:" type="V_WString" />
+                <Field name="fields_project_avatarUrls_32x32" size="2048" source="CrossTab:Header:JSON_Name:fields.project.avatarUrls.32x32:Concat:" type="V_WString" />
+                <Field name="fields_project_avatarUrls_48x48" size="2048" source="CrossTab:Header:JSON_Name:fields.project.avatarUrls.48x48:Concat:" type="V_WString" />
+                <Field name="fields_project_id" size="2048" source="CrossTab:Header:JSON_Name:fields.project.id:Concat:" type="V_WString" />
+                <Field name="fields_project_key" size="2048" source="CrossTab:Header:JSON_Name:fields.project.key:Concat:" type="V_WString" />
+                <Field name="fields_project_name" size="2048" source="CrossTab:Header:JSON_Name:fields.project.name:Concat:" type="V_WString" />
+                <Field name="fields_project_projectCategory_description" size="2048" source="CrossTab:Header:JSON_Name:fields.project.projectCategory.description:Concat:" type="V_WString" />
+                <Field name="fields_project_projectCategory_id" size="2048" source="CrossTab:Header:JSON_Name:fields.project.projectCategory.id:Concat:" type="V_WString" />
+                <Field name="fields_project_projectCategory_name" size="2048" source="CrossTab:Header:JSON_Name:fields.project.projectCategory.name:Concat:" type="V_WString" />
+                <Field name="fields_project_projectCategory_self" size="2048" source="CrossTab:Header:JSON_Name:fields.project.projectCategory.self:Concat:" type="V_WString" />
+                <Field name="fields_project_self" size="2048" source="CrossTab:Header:JSON_Name:fields.project.self:Concat:" type="V_WString" />
+                <Field name="fields_reporter_active" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.active:Concat:" type="V_WString" />
+                <Field name="fields_reporter_avatarUrls_16x16" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.avatarUrls.16x16:Concat:" type="V_WString" />
+                <Field name="fields_reporter_avatarUrls_24x24" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.avatarUrls.24x24:Concat:" type="V_WString" />
+                <Field name="fields_reporter_avatarUrls_32x32" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.avatarUrls.32x32:Concat:" type="V_WString" />
+                <Field name="fields_reporter_avatarUrls_48x48" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.avatarUrls.48x48:Concat:" type="V_WString" />
+                <Field name="fields_reporter_displayName" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.displayName:Concat:" type="V_WString" />
+                <Field name="fields_reporter_emailAddress" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.emailAddress:Concat:" type="V_WString" />
+                <Field name="fields_reporter_key" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.key:Concat:" type="V_WString" />
+                <Field name="fields_reporter_name" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.name:Concat:" type="V_WString" />
+                <Field name="fields_reporter_self" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.self:Concat:" type="V_WString" />
+                <Field name="fields_reporter_timeZone" size="2048" source="CrossTab:Header:JSON_Name:fields.reporter.timeZone:Concat:" type="V_WString" />
+                <Field name="fields_resolution" size="2048" source="CrossTab:Header:JSON_Name:fields.resolution:Concat:" type="V_WString" />
+                <Field name="fields_resolutiondate" size="2048" source="CrossTab:Header:JSON_Name:fields.resolutiondate:Concat:" type="V_WString" />
+                <Field name="fields_status_description" size="2048" source="CrossTab:Header:JSON_Name:fields.status.description:Concat:" type="V_WString" />
+                <Field name="fields_status_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.status.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_status_id" size="2048" source="CrossTab:Header:JSON_Name:fields.status.id:Concat:" type="V_WString" />
+                <Field name="fields_status_name" size="2048" source="CrossTab:Header:JSON_Name:fields.status.name:Concat:" type="V_WString" />
+                <Field name="fields_status_self" size="2048" source="CrossTab:Header:JSON_Name:fields.status.self:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_colorName" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.colorName:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_id" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.id:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_key" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.key:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_name" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.name:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_self" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.self:Concat:" type="V_WString" />
+                <Field name="fields_summary" size="2048" source="CrossTab:Header:JSON_Name:fields.summary:Concat:" type="V_WString" />
+                <Field name="fields_timeestimate" size="2048" source="CrossTab:Header:JSON_Name:fields.timeestimate:Concat:" type="V_WString" />
+                <Field name="fields_timeoriginalestimate" size="2048" source="CrossTab:Header:JSON_Name:fields.timeoriginalestimate:Concat:" type="V_WString" />
+                <Field name="fields_timespent" size="2048" source="CrossTab:Header:JSON_Name:fields.timespent:Concat:" type="V_WString" />
+                <Field name="fields_updated" size="2048" source="CrossTab:Header:JSON_Name:fields.updated:Concat:" type="V_WString" />
+                <Field name="fields_votes_hasVoted" size="2048" source="CrossTab:Header:JSON_Name:fields.votes.hasVoted:Concat:" type="V_WString" />
+                <Field name="fields_votes_self" size="2048" source="CrossTab:Header:JSON_Name:fields.votes.self:Concat:" type="V_WString" />
+                <Field name="fields_votes_votes" size="2048" source="CrossTab:Header:JSON_Name:fields.votes.votes:Concat:" type="V_WString" />
+                <Field name="fields_watches_isWatching" size="2048" source="CrossTab:Header:JSON_Name:fields.watches.isWatching:Concat:" type="V_WString" />
+                <Field name="fields_watches_self" size="2048" source="CrossTab:Header:JSON_Name:fields.watches.self:Concat:" type="V_WString" />
+                <Field name="fields_watches_watchCount" size="2048" source="CrossTab:Header:JSON_Name:fields.watches.watchCount:Concat:" type="V_WString" />
+                <Field name="fields_workratio" size="2048" source="CrossTab:Header:JSON_Name:fields.workratio:Concat:" type="V_WString" />
+                <Field name="id" size="2048" source="CrossTab:Header:JSON_Name:id:Concat:" type="V_WString" />
+                <Field name="key" size="2048" source="CrossTab:Header:JSON_Name:key:Concat:" type="V_WString" />
+                <Field name="maxResults" size="2048" source="CrossTab:Header:JSON_Name:maxResults:Concat:" type="V_WString" />
+                <Field name="self" size="2048" source="CrossTab:Header:JSON_Name:self:Concat:" type="V_WString" />
+                <Field name="startAt" size="2048" source="CrossTab:Header:JSON_Name:startAt:Concat:" type="V_WString" />
+                <Field name="total" size="2048" source="CrossTab:Header:JSON_Name:total:Concat:" type="V_WString" />
+              </RecordInfo>
+              <SortInfo>
+                <Field field="Issue_Key" order="Asc" />
+              </SortInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+        </Node>
+        <Node ToolID="39">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="678" y="282" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Issue_Key" selected="True" />
+                <SelectField field="fields_assignee" selected="True" />
+                <SelectField field="fields_assignee_displayName" selected="True" />
+                <SelectField field="fields_assignee_emailAddress" selected="True" />
+                <SelectField field="fields_assignee_key" selected="True" />
+                <SelectField field="fields_assignee_name" selected="True" />
+                <SelectField field="fields_creator_displayName" selected="True" />
+                <SelectField field="fields_creator_emailAddress" selected="True" />
+                <SelectField field="fields_creator_key" selected="True" />
+                <SelectField field="fields_creator_name" selected="True" />
+                <SelectField field="fields_customfield_10705_value" selected="True" />
+                <SelectField field="fields_description" selected="True" />
+                <SelectField field="fields_duedate" selected="True" />
+                <SelectField field="fields_fixVersions_0_name" selected="True" />
+                <SelectField field="fields_fixVersions_0_releaseDate" selected="True" />
+                <SelectField field="fields_issuetype_description" selected="True" />
+                <SelectField field="fields_issuetype_name" selected="True" />
+                <SelectField field="fields_parent_fields_status_statusCategory_colorName" selected="True" />
+                <SelectField field="fields_parent_fields_summary" selected="True" />
+                <SelectField field="fields_parent_key" selected="True" />
+                <SelectField field="fields_priority_name" selected="True" />
+                <SelectField field="fields_project_id" selected="True" />
+                <SelectField field="fields_project_key" selected="True" />
+                <SelectField field="fields_project_name" selected="True" />
+                <SelectField field="fields_project_projectCategory_description" selected="True" />
+                <SelectField field="fields_reporter_displayName" selected="True" />
+                <SelectField field="fields_reporter_emailAddress" selected="True" />
+                <SelectField field="fields_summary" selected="True" rename="Initiative" />
+                <SelectField field="fields_timeestimate" selected="True" />
+                <SelectField field="fields_timeoriginalestimate" selected="True" />
+                <SelectField field="fields_timespent" selected="True" />
+                <SelectField field="fields_votes_hasVoted" selected="True" />
+                <SelectField field="fields_votes_votes" selected="True" />
+                <SelectField field="fields_watches_isWatching" selected="True" />
+                <SelectField field="key" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="42">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="786" y="282" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>IsNotNull</Operator>
+                <Field>Issue_Key</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2020-05-21 18:53:28</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>
+                  </Operand>
+                  <StartDate>2020-05-21 18:53:28</StartDate>
+                  <EndDate>2020-05-21 18:53:28</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>!IsNull([Issue_Key])</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="53">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="906" y="270" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>=</Operator>
+                <Field>fields_issuetype_name</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2020-06-02 07:14:11</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>Initiative</Operand>
+                  <StartDate>2020-06-02 07:14:11</StartDate>
+                  <EndDate>2020-06-02 07:14:11</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[fields_issuetype_name] = "Initiative"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="50">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="413" y="413" width="573" height="177" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Parse out squads involved for each initiaive</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#004080" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="33">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="534" y="474" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="fields.customfield_10704.(\d+)." />
+              <CaseInsensitve value="True" />
+              <Method>Replace</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="RegExOut1" type="V_WString" size="1073741823" />
+              </ParseComplex>
+              <Match>
+                <Field>JSON_Name_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="34">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="438" y="474" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="fields.customfield_10704.(\d+)" />
+              <CaseInsensitve value="True" />
+              <Method>ParseComplex</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="IssueLink_key" type="V_WString" size="1073741823" />
+              </ParseComplex>
+              <Match>
+                <Field>JSON_Name_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="35">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+            <Position x="714" y="462" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <GroupFields>
+                <Field field="Issue_Key" />
+                <Field field="IssueLink_key" />
+              </GroupFields>
+              <HeaderField field="JSON_Name" />
+              <DataField field="JSON_ValueString" />
+              <Methods>
+                <Method method="Concat" />
+                <Separator>,</Separator>
+                <FieldSize value="2048" />
+              </Methods>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field description="RegEx: Parsed from JSON_Name" name="Issue_Key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field description="RegEx: Parsed from JSON_Name" name="IssueLink_key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field name="id" size="2048" source="CrossTab:Header:JSON_Name:id:Concat:" type="V_WString" />
+                <Field name="self" size="2048" source="CrossTab:Header:JSON_Name:self:Concat:" type="V_WString" />
+                <Field name="value" size="2048" source="CrossTab:Header:JSON_Name:value:Concat:" type="V_WString" />
+              </RecordInfo>
+              <SortInfo>
+                <Field field="Issue_Key" order="Asc" />
+                <Field field="IssueLink_key" order="Asc" />
+              </SortInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+        </Node>
+        <Node ToolID="36">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="786" y="462" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Issue_Key" selected="True" />
+                <SelectField field="IssueLink_key" selected="True" />
+                <SelectField field="value" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="37">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="618" y="474" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>IsNotNull</Operator>
+                <Field>IssueLink_key</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2020-05-21 18:43:07</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>
+                  </Operand>
+                  <StartDate>2020-05-21 18:43:07</StartDate>
+                  <EndDate>2020-05-21 18:43:07</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>!IsNull([IssueLink_key])</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="45">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="870" y="462" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="0">C:\Users\Adrian Perdon\Desktop\Self_Service_Analytics\2.Alteryx\2_Data\Outbound\JIRA_Tribes.csv</File>
+              <Passwords />
+              <FormatSpecificOptions>
+                <LineEndStyle>CRLF</LineEndStyle>
+                <Delimeter>,</Delimeter>
+                <ForceQuotes>False</ForceQuotes>
+                <HeaderRow>True</HeaderRow>
+                <CodePage>28591</CodePage>
+                <WriteBOM>True</WriteBOM>
+              </FormatSpecificOptions>
+              <MultiFile value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>JIRA_Tribes.csv</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="49">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="401" y="605" width="573" height="165" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Parse out Linked Squad Epics to each initiative</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="24">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="522" y="654" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="fields.issuelinks.(\d+)" />
+              <CaseInsensitve value="True" />
+              <Method>Replace</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="RegExOut1" type="V_WString" size="1073741823" />
+              </ParseComplex>
+              <Match>
+                <Field>JSON_Name_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="25">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="426" y="654" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="fields.issuelinks.(\d+)" />
+              <CaseInsensitve value="True" />
+              <Method>ParseComplex</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="IssueLink_key" type="V_WString" size="1073741823" />
+              </ParseComplex>
+              <Match>
+                <Field>JSON_Name_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="26">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+            <Position x="618" y="654" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <GroupFields>
+                <Field field="Issue_Key" />
+                <Field field="IssueLink_key" />
+              </GroupFields>
+              <HeaderField field="JSON_Name" />
+              <DataField field="JSON_ValueString" />
+              <Methods>
+                <Method method="Concat" />
+                <Separator>,</Separator>
+                <FieldSize value="2048" />
+              </Methods>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field description="RegEx: Parsed from JSON_Name" name="Issue_Key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field description="RegEx: Parsed from JSON_Name" name="IssueLink_key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field name="_id" size="2048" source="CrossTab:Header:JSON_Name:.id:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_avatarId" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.avatarId:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_description" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.description:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.iconUrl:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_id" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.id:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_name" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.name:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_self" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.self:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_issuetype_subtask" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.issuetype.subtask:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_priority_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.priority.iconUrl:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_priority_id" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.priority.id:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_priority_name" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.priority.name:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_priority_self" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.priority.self:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_description" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.description:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.iconUrl:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_id" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.id:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_name" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.name:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_self" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.self:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_statusCategory_colorName" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.statusCategory.colorName:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_statusCategory_id" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.statusCategory.id:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_statusCategory_key" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.statusCategory.key:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_statusCategory_name" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.statusCategory.name:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_status_statusCategory_self" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.status.statusCategory.self:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_fields_summary" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.fields.summary:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_id" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.id:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_key" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.key:Concat:" type="V_WString" />
+                <Field name="_inwardIssue_self" size="2048" source="CrossTab:Header:JSON_Name:.inwardIssue.self:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_avatarId" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.avatarId:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_description" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.description:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.iconUrl:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_id" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.id:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_name" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.name:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_self" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.self:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_issuetype_subtask" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.issuetype.subtask:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_priority_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.priority.iconUrl:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_priority_id" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.priority.id:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_priority_name" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.priority.name:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_priority_self" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.priority.self:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_description" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.description:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.iconUrl:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_id" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.id:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_name" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.name:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_self" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.self:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_statusCategory_colorName" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.statusCategory.colorName:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_statusCategory_id" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.statusCategory.id:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_statusCategory_key" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.statusCategory.key:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_statusCategory_name" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.statusCategory.name:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_status_statusCategory_self" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.status.statusCategory.self:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_fields_summary" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.fields.summary:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_id" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.id:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_key" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.key:Concat:" type="V_WString" />
+                <Field name="_outwardIssue_self" size="2048" source="CrossTab:Header:JSON_Name:.outwardIssue.self:Concat:" type="V_WString" />
+                <Field name="_self" size="2048" source="CrossTab:Header:JSON_Name:.self:Concat:" type="V_WString" />
+                <Field name="_type_id" size="2048" source="CrossTab:Header:JSON_Name:.type.id:Concat:" type="V_WString" />
+                <Field name="_type_inward" size="2048" source="CrossTab:Header:JSON_Name:.type.inward:Concat:" type="V_WString" />
+                <Field name="_type_name" size="2048" source="CrossTab:Header:JSON_Name:.type.name:Concat:" type="V_WString" />
+                <Field name="_type_outward" size="2048" source="CrossTab:Header:JSON_Name:.type.outward:Concat:" type="V_WString" />
+                <Field name="_type_self" size="2048" source="CrossTab:Header:JSON_Name:.type.self:Concat:" type="V_WString" />
+              </RecordInfo>
+              <SortInfo>
+                <Field field="Issue_Key" order="Asc" />
+                <Field field="IssueLink_key" order="Asc" />
+              </SortInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+        </Node>
+        <Node ToolID="27">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="726" y="654" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Issue_Key" selected="True" />
+                <SelectField field="IssueLink_key" selected="True" />
+                <SelectField field="_inwardIssue_fields_summary" selected="True" />
+                <SelectField field="_inwardIssue_key" selected="True" />
+                <SelectField field="_outwardIssue_key" selected="True" />
+                <SelectField field="_type_name" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="46">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="846" y="654" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="0">C:\Users\Adrian Perdon\Desktop\Self_Service_Analytics\2.Alteryx\2_Data\Outbound\JIRA_Issues_links.csv</File>
+              <Passwords />
+              <FormatSpecificOptions>
+                <LineEndStyle>CRLF</LineEndStyle>
+                <Delimeter>,</Delimeter>
+                <ForceQuotes>False</ForceQuotes>
+                <HeaderRow>True</HeaderRow>
+                <CodePage>28591</CodePage>
+                <WriteBOM>True</WriteBOM>
+              </FormatSpecificOptions>
+              <MultiFile value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>JIRA_Issues_links.csv</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="48">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="353" y="784" width="576" height="149" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Parse out Sub-Tasks for each squad epic</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="21">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="486" y="833" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="fields.subtasks.(\d+)." />
+              <CaseInsensitve value="True" />
+              <Method>Replace</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="RegExOut1" type="V_WString" size="1073741823" />
+              </ParseComplex>
+              <Match>
+                <Field>JSON_Name_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="22">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="378" y="833" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>JSON_Name</Field>
+              <RegExExpression value="fields.subtasks.(\d+)" />
+              <CaseInsensitve value="True" />
+              <Method>ParseComplex</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>JSON_Name</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="Subtask_key" type="V_WString" size="1073741823" />
+              </ParseComplex>
+              <Match>
+                <Field>JSON_Name_Matched</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="23">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+            <Position x="582" y="833" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <GroupFields>
+                <Field field="Issue_Key" />
+                <Field field="Subtask_key" />
+              </GroupFields>
+              <HeaderField field="JSON_Name" />
+              <DataField field="JSON_ValueString" />
+              <Methods>
+                <Method method="Concat" />
+                <Separator>,</Separator>
+                <FieldSize value="2048" />
+              </Methods>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field description="RegEx: Parsed from JSON_Name" name="Issue_Key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field description="RegEx: Parsed from JSON_Name" name="Subtask_key" size="1073741823" source="CrossTab:Group:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_avatarId" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.avatarId:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_description" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.description:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_id" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.id:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_name" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.name:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_self" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.self:Concat:" type="V_WString" />
+                <Field name="fields_issuetype_subtask" size="2048" source="CrossTab:Header:JSON_Name:fields.issuetype.subtask:Concat:" type="V_WString" />
+                <Field name="fields_priority_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_priority_id" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.id:Concat:" type="V_WString" />
+                <Field name="fields_priority_name" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.name:Concat:" type="V_WString" />
+                <Field name="fields_priority_self" size="2048" source="CrossTab:Header:JSON_Name:fields.priority.self:Concat:" type="V_WString" />
+                <Field name="fields_status_description" size="2048" source="CrossTab:Header:JSON_Name:fields.status.description:Concat:" type="V_WString" />
+                <Field name="fields_status_iconUrl" size="2048" source="CrossTab:Header:JSON_Name:fields.status.iconUrl:Concat:" type="V_WString" />
+                <Field name="fields_status_id" size="2048" source="CrossTab:Header:JSON_Name:fields.status.id:Concat:" type="V_WString" />
+                <Field name="fields_status_name" size="2048" source="CrossTab:Header:JSON_Name:fields.status.name:Concat:" type="V_WString" />
+                <Field name="fields_status_self" size="2048" source="CrossTab:Header:JSON_Name:fields.status.self:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_colorName" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.colorName:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_id" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.id:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_key" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.key:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_name" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.name:Concat:" type="V_WString" />
+                <Field name="fields_status_statusCategory_self" size="2048" source="CrossTab:Header:JSON_Name:fields.status.statusCategory.self:Concat:" type="V_WString" />
+                <Field name="fields_summary" size="2048" source="CrossTab:Header:JSON_Name:fields.summary:Concat:" type="V_WString" />
+                <Field name="id" size="2048" source="CrossTab:Header:JSON_Name:id:Concat:" type="V_WString" />
+                <Field name="key" size="2048" source="CrossTab:Header:JSON_Name:key:Concat:" type="V_WString" />
+                <Field name="self" size="2048" source="CrossTab:Header:JSON_Name:self:Concat:" type="V_WString" />
+              </RecordInfo>
+              <SortInfo>
+                <Field field="Issue_Key" order="Asc" />
+                <Field field="Subtask_key" order="Asc" />
+              </SortInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+        </Node>
+        <Node ToolID="28">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="690" y="833" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Issue_Key" selected="True" />
+                <SelectField field="Subtask_key" selected="True" />
+                <SelectField field="fields_issuetype_avatarId" selected="False" />
+                <SelectField field="fields_issuetype_description" selected="False" />
+                <SelectField field="fields_issuetype_iconUrl" selected="False" />
+                <SelectField field="fields_issuetype_id" selected="False" />
+                <SelectField field="fields_issuetype_self" selected="False" />
+                <SelectField field="fields_issuetype_subtask" selected="False" />
+                <SelectField field="fields_priority_iconUrl" selected="False" />
+                <SelectField field="fields_priority_id" selected="False" />
+                <SelectField field="fields_priority_name" selected="False" />
+                <SelectField field="fields_priority_self" selected="False" />
+                <SelectField field="fields_status_description" selected="False" />
+                <SelectField field="fields_status_iconUrl" selected="False" />
+                <SelectField field="fields_status_id" selected="False" />
+                <SelectField field="fields_status_name" selected="False" />
+                <SelectField field="fields_status_self" selected="False" />
+                <SelectField field="fields_status_statusCategory_colorName" selected="False" />
+                <SelectField field="fields_status_statusCategory_id" selected="False" />
+                <SelectField field="fields_status_statusCategory_key" selected="False" />
+                <SelectField field="fields_status_statusCategory_name" selected="False" />
+                <SelectField field="fields_status_statusCategory_self" selected="False" />
+                <SelectField field="key" selected="True" />
+                <SelectField field="fields_summary" selected="True" />
+                <SelectField field="fields_issuetype_name" selected="True" />
+                <SelectField field="id" selected="True" />
+                <SelectField field="self" selected="False" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="47">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="798" y="833" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="0">C:\Users\Adrian Perdon\Desktop\Self_Service_Analytics\2.Alteryx\2_Data\Outbound\JIRA_Subtasks.csv</File>
+              <Passwords />
+              <FormatSpecificOptions>
+                <LineEndStyle>CRLF</LineEndStyle>
+                <Delimeter>,</Delimeter>
+                <ForceQuotes>False</ForceQuotes>
+                <HeaderRow>True</HeaderRow>
+                <CodePage>28591</CodePage>
+                <WriteBOM>True</WriteBOM>
+              </FormatSpecificOptions>
+              <MultiFile value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>JIRA_Subtasks.csv</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="19" Connection="True" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="19" Connection="False" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection Wireless="True">
+      <Origin ToolID="20" Connection="False" />
+      <Destination ToolID="25" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="20" Connection="True" />
+      <Destination ToolID="32" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="32" Connection="False" />
+      <Destination ToolID="34" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="32" Connection="True" />
+      <Destination ToolID="38" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="38" Connection="Output" />
+      <Destination ToolID="39" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="39" Connection="Output" />
+      <Destination ToolID="42" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="42" Connection="True" />
+      <Destination ToolID="53" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="33" Connection="Output" />
+      <Destination ToolID="37" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="34" Connection="Output" />
+      <Destination ToolID="33" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="35" Connection="Output" />
+      <Destination ToolID="36" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="36" Connection="Output" />
+      <Destination ToolID="45" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="37" Connection="True" />
+      <Destination ToolID="35" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="24" Connection="Output" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="25" Connection="Output" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output" />
+      <Destination ToolID="27" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="27" Connection="Output" />
+      <Destination ToolID="46" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="21" Connection="Output" />
+      <Destination ToolID="23" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="Output" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="23" Connection="Output" />
+      <Destination ToolID="28" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="28" Connection="Output" />
+      <Destination ToolID="47" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Parse_JIRA_Project</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
